@@ -13,3 +13,5 @@ RUN dotnet publish -c Release -o /app/publish --no-restore
 
 EXPOSE 5000
 ENV ASPNETCORE_URLS=http://+:5000
+
+ENTRYPOINT [ "dotnet","publish/MyWebApp.dll" ]
