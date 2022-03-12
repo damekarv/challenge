@@ -7,12 +7,13 @@ image:
   tag: test1
 
 serviceAccount:
-  create: true
+  create: false
   name: ""
 
 service:
   type: ClusterIP
   port: 80
+  targetPort: 5000
 
 resources:
   limits:
@@ -26,6 +27,8 @@ autoscaling:
   enabled: false
   minReplicas: 1
   maxReplicas: 3
+
 container:
   env:
-    GREET_VAR: Forthline
+  - name: GREET_VAR 
+    value: Forthline
