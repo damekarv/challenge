@@ -5,6 +5,11 @@ metadata:
   name: {{ include "mywebapp.fullname" . }}
   labels:
     {{- include "mywebapp.labels" . | nindent 4 }}
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: {{.Values.externalHostname}}
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "https"
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: {{.Values.certificateArn}}
 spec:
   type: {{ .Values.service.type }}
   ports:
